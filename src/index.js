@@ -16,16 +16,26 @@ const FLOOR = {
 const TREX = {
   image: null,
   start: FLOOR.value,
-  end: 50,
+  end: 90,
   gravity: 10,
   isDown: false,
   jumping: false
 };
 const CLOUD = {
-  image: null
+  image: null,
+  x: 280,
+  y: 40,
+  velocity: 1
 };
 const CACTUS = {
-  image: null
+  image: null,
+  x: 400,
+  y: FLOOR.value
+};
+
+const NIVEL = {
+  velocity: 2,
+  puntuacion: 0
 };
 
 const init = () => {
@@ -62,7 +72,7 @@ const loadImages = () => {
 
 // Esta funcion esta creada para cuando este saltando
 const jump = () => {
-  TREX.jumping = true;
+  if (!TREX.jumping) TREX.jumping = true;
   TREX.idDown = false;
 };
 // Esta funcion esta creada para cuando ya salto empiece a caer
@@ -85,6 +95,24 @@ const goDown = () => {
   }
 };
 
+const drawClouds = () => {
+  CONTEXT.drawImage(CLOUD.image, CLOUD.x, CLOUD.y, 100, 50);
+  if (CLOUD.x < -100) {
+    CLOUD.x = WIDTH_CANVAS + 100;
+  } else {
+    CLOUD.x -= CLOUD.velocity;
+  }
+};
+
+const drawCactus = () => {
+  CONTEXT.drawImage(CACTUS.image, CACTUS.x, CACTUS.y, 100, 80);
+  if (CACTUS.x < -100) {
+    CACTUS.x = WIDTH_CANVAS + 100;
+  } else {
+    CACTUS.x -= NIVEL.velocity;
+  }
+};
+
 const drawRex = () => {
   CONTEXT.drawImage(TREX.image, 10, TREX.start, 50, 70);
 };
@@ -96,6 +124,8 @@ const clearCanvas = () => {
 const main = () => {
   clearCanvas();
   goDown();
+  drawClouds();
+  drawCactus();
   drawRex();
 };
 
