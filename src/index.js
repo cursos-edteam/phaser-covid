@@ -95,6 +95,14 @@ const goDown = () => {
   }
 };
 
+const drawFloor = () => {
+  CONTEXT.beginPath();
+  CONTEXT.lineWidth = 1;
+  CONTEXT.moveTo(0, 263);
+  CONTEXT.lineTo(WIDTH_CANVAS, 263);
+  CONTEXT.stroke();
+};
+
 const drawClouds = () => {
   CONTEXT.drawImage(CLOUD.image, CLOUD.x, CLOUD.y, 100, 50);
   if (CLOUD.x < -100) {
@@ -124,6 +132,7 @@ const clearCanvas = () => {
 const main = () => {
   clearCanvas();
   goDown();
+  drawFloor();
   drawClouds();
   drawCactus();
   drawRex();
