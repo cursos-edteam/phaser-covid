@@ -51,8 +51,8 @@ const init = () => {
     main();
   }, 1000 / FPS);
   document.addEventListener('keydown', (event) => {
-    const key = event.keyCode || event.charCode;
-    if (key === 32) {
+    const { key } = event;
+    if (key === ' ') {
       // espacio
       jump();
     }
