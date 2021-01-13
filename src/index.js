@@ -98,8 +98,8 @@ const goDown = () => {
 const drawFloor = () => {
   CONTEXT.beginPath();
   CONTEXT.lineWidth = 1;
-  CONTEXT.moveTo(0, 263);
-  CONTEXT.lineTo(WIDTH_CANVAS, 263);
+  CONTEXT.moveTo(0, 264);
+  CONTEXT.lineTo(WIDTH_CANVAS, 264);
   CONTEXT.stroke();
 };
 
