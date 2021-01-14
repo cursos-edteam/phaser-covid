@@ -1,7 +1,4 @@
-import imgRex from './img/dino.jpg';
-import imgCloud from './img/nube.jpg';
-import imgFloor from './img/suelo.jpg';
-import imgCactus from './img/cactus.jpg';
+import imgGame from './img/grafica-trex.png'; // Width: 1233 Height: 68
 
 let CANVAS;
 let CONTEXT;
@@ -9,12 +6,15 @@ const WIDTH_CANVAS = 700;
 const HEIGHT_CANVAS = 300;
 const FPS = 45;
 
+const IMG = {
+  image: null
+};
 const FLOOR = {
   image: null,
-  value: 200
+  value: 200,
+  x: 1200
 };
 const TREX = {
-  image: null,
   start: FLOOR.value,
   end: 90,
   gravity: 10,
@@ -30,12 +30,14 @@ const CLOUD = {
 const CACTUS = {
   image: null,
   x: 400,
-  y: FLOOR.value
+  y: FLOOR.value,
+  velocity: 4
 };
 
 const NIVEL = {
   velocity: 2,
-  puntuacion: 0
+  puntuacion: 0,
+  gameover: false
 };
 
 const init = () => {
@@ -54,20 +56,22 @@ const init = () => {
     const { key } = event;
     if (key === ' ') {
       // espacio
-      jump();
+      if (!NIVEL.gameover) {
+        jump();
+      } else {
+        NIVEL.gameover = false;
+        NIVEL.velocity = 2;
+        CACTUS.velocity = 4;
+        CACTUS.x = WIDTH_CANVAS - 100;
+        CLOUD.velocity = 1;
+      }
     }
   });
 };
 
 const loadImages = () => {
-  TREX.image = new Image();
-  TREX.image.src = imgRex;
-  CLOUD.image = new Image();
-  CLOUD.image.src = imgCloud;
-  FLOOR.image = new Image();
-  FLOOR.image.src = imgFloor;
-  CACTUS.image = new Image();
-  CACTUS.image.src = imgCactus;
+  IMG.image = new Image();
+  IMG.image.src = imgGame;
 };
 
 // Esta funcion esta creada para cuando este saltando
@@ -95,16 +99,47 @@ const goDown = () => {
   }
 };
 
+/* const drawFloor = () => {
+ *   CONTEXT.beginPath();
+ *   CONTEXT.lineWidth = 1;
+ *   CONTEXT.moveTo(0, 264);
+ *   CONTEXT.lineTo(WIDTH_CANVAS, 264);
+ *   CONTEXT.stroke();
+ * }; */
+
+const collision = () => {
+  if (CACTUS.x > 50 && CACTUS.x < 92) {
+    if (TREX.start > 165) {
+      NIVEL.gameover = true;
+      NIVEL.velocity = 0;
+      CLOUD.velocity = 0;
+      CACTUS.velocity = 0;
+    }
+  }
+};
+
 const drawFloor = () => {
-  CONTEXT.beginPath();
-  CONTEXT.lineWidth = 1;
-  CONTEXT.moveTo(0, 264);
-  CONTEXT.lineTo(WIDTH_CANVAS, 264);
-  CONTEXT.stroke();
+  CONTEXT.drawImage(
+    IMG.image,
+    0,
+    50,
+    1200,
+    18,
+    0,
+    FLOOR.value + 38,
+    WIDTH_CANVAS,
+    20
+  );
+  if (FLOOR.x > WIDTH_CANVAS) {
+    FLOOR.x -= NIVEL.velocity;
+  } else {
+    FLOOR.x = WIDTH_CANVAS;
+  }
 };
 
 const drawClouds = () => {
-  CONTEXT.drawImage(CLOUD.image, CLOUD.x, CLOUD.y, 100, 50);
+  /* CONTEXT.drawImage(IMG.image, CLOUD.x, CLOUD.y, 100, 50); */
+  CONTEXT.drawImage(IMG.image, 86, 0, 50, 20, CLOUD.x, CLOUD.y, 50, 20);
   if (CLOUD.x < -100) {
     CLOUD.x = WIDTH_CANVAS + 100;
   } else {
@@ -113,16 +148,17 @@ const drawClouds = () => {
 };
 
 const drawCactus = () => {
-  CONTEXT.drawImage(CACTUS.image, CACTUS.x, CACTUS.y, 100, 80);
+  // CONTEXT.drawImage(IMG.image, CACTUS.x, CACTUS.y, 100, 80);
+  CONTEXT.drawImage(IMG.image, 433, 0, 25, 45, CACTUS.x, CACTUS.y, 30, 45);
   if (CACTUS.x < -100) {
     CACTUS.x = WIDTH_CANVAS + 100;
   } else {
-    CACTUS.x -= NIVEL.velocity;
+    CACTUS.x -= CACTUS.velocity;
   }
 };
 
 const drawRex = () => {
-  CONTEXT.drawImage(TREX.image, 10, TREX.start, 50, 70);
+  CONTEXT.drawImage(IMG.image, 848, 0, 42, 50, 50, TREX.start, 42, 50);
 };
 
 const clearCanvas = () => {
@@ -131,6 +167,7 @@ const clearCanvas = () => {
 // Funcion que gestionara todo el control del juego
 const main = () => {
   clearCanvas();
+  collision();
   goDown();
   drawFloor();
   drawClouds();
