@@ -152,9 +152,25 @@ const drawCactus = () => {
   CONTEXT.drawImage(IMG.image, 433, 0, 25, 45, CACTUS.x, CACTUS.y, 30, 45);
   if (CACTUS.x < -100) {
     CACTUS.x = WIDTH_CANVAS + 100;
+    const score = localStorage.getItem('score') || 0;
+    localStorage.setItem('score', parseInt(score) + 10);
   } else {
     CACTUS.x -= CACTUS.velocity;
   }
+};
+
+const drawGameOver = () => {
+  if (NIVEL.gameover) {
+    CONTEXT.drawImage(IMG.image, 0, 0, 40, 50, 350, 100, 40, 50);
+    CONTEXT.font = '30px Arial';
+    CONTEXT.fillText('Game Over', 300, 160);
+  }
+};
+
+const writeScore = () => {
+  const score = localStorage.getItem('score') || 0;
+  CONTEXT.font = '20px Arial';
+  CONTEXT.fillText(`HI: ${score}`, 600, 20);
 };
 
 const drawRex = () => {
@@ -173,6 +189,8 @@ const main = () => {
   drawClouds();
   drawCactus();
   drawRex();
+  drawGameOver();
+  writeScore();
 };
 
 document.addEventListener('load', init());
