@@ -1,7 +1,9 @@
 import imgGame from './img/grafica-trex.png'; // Width: 1233 Height: 68
+import { sound, endGame } from './sound';
 let CANVAS;
 let CONTEXT;
-let SOUND;
+let JUMP_SOUND;
+let DEAD_SOUND;
 const WIDTH_CANVAS = 700;
 const HEIGHT_CANVAS = 300;
 const FPS = 45;
@@ -39,7 +41,8 @@ const CACTUS = {
 const NIVEL = {
   velocity: 2,
   puntuacion: 0,
-  gameover: false
+  gameover: false,
+  deadSound: false
 };
 
 const init = () => {
@@ -49,9 +52,9 @@ const init = () => {
   CANVAS.height = HEIGHT_CANVAS;
   CANVAS.style.border = '2px solid #000';
   CONTEXT = CANVAS.getContext('2d');
-  SOUND = document.querySelector('#audio');
-  SOUND.src =
-    'https://firebasestorage.googleapis.com/v0/b/assets-d8bec.appspot.com/o/audio.mp3?alt=media&token=39b7e192-3333-42bf-9043-08c3d05cb49c';
+  const url = 'https://github.com/diego-adrian/t-rex/blob/master/audio.mp3';
+  JUMP_SOUND = new Audio(sound);
+  DEAD_SOUND = new Audio(endGame);
   loadImages();
   // Bucle principal
   setInterval(() => {
@@ -65,6 +68,7 @@ const init = () => {
         jump();
       } else {
         localStorage.setItem('count', 0);
+        NIVEL.deadSound = false;
         NIVEL.gameover = false;
         NIVEL.velocity = 2;
         CACTUS.velocity = 4;
@@ -83,6 +87,7 @@ const loadImages = () => {
 
 // Esta funcion esta creada para cuando este saltando
 const jump = () => {
+  JUMP_SOUND.play();
   if (!TREX.jumping) TREX.jumping = true;
   TREX.idDown = false;
 };
@@ -117,6 +122,10 @@ const goDown = () => {
 const collision = () => {
   if (CACTUS.x > 50 && CACTUS.x < 92) {
     if (TREX.start > 165) {
+      if (!NIVEL.deadSound) {
+        DEAD_SOUND.play();
+        NIVEL.deadSound = true;
+      }
       NIVEL.gameover = true;
       NIVEL.velocity = 0;
       CLOUD.velocity = 0;
@@ -129,21 +138,19 @@ const collision = () => {
 const drawFloor = () => {
   CONTEXT.drawImage(
     IMG.image,
-    0,
-    50,
-    900,
-    18,
     FLOOR.x,
+    50,
+    700,
+    18,
+    0,
     FLOOR.value + 38,
     1200,
     20
   );
-  if (FLOOR.start < 250) {
-    FLOOR.x -= FLOOR.velocity;
-    FLOOR.start += FLOOR.velocity;
-  } else {
+  if (FLOOR.x > 700) {
     FLOOR.x = 0;
-    FLOOR.start = 0;
+  } else {
+    FLOOR.x += FLOOR.velocity ;
   }
 };
 
