@@ -1,7 +1,7 @@
 import imgGame from './img/grafica-trex.png'; // Width: 1233 Height: 68
-
 let CANVAS;
 let CONTEXT;
+let SOUND;
 const WIDTH_CANVAS = 700;
 const HEIGHT_CANVAS = 300;
 const FPS = 45;
@@ -12,7 +12,9 @@ const IMG = {
 const FLOOR = {
   image: null,
   value: 200,
-  x: 1200
+  x: 0,
+  start: 0,
+  velocity: 4
 };
 const TREX = {
   start: FLOOR.value,
@@ -47,6 +49,9 @@ const init = () => {
   CANVAS.height = HEIGHT_CANVAS;
   CANVAS.style.border = '2px solid #000';
   CONTEXT = CANVAS.getContext('2d');
+  SOUND = document.querySelector('#audio');
+  SOUND.src =
+    'https://firebasestorage.googleapis.com/v0/b/assets-d8bec.appspot.com/o/audio.mp3?alt=media&token=39b7e192-3333-42bf-9043-08c3d05cb49c';
   loadImages();
   // Bucle principal
   setInterval(() => {
@@ -59,11 +64,13 @@ const init = () => {
       if (!NIVEL.gameover) {
         jump();
       } else {
+        localStorage.setItem('count', 0);
         NIVEL.gameover = false;
         NIVEL.velocity = 2;
         CACTUS.velocity = 4;
         CACTUS.x = WIDTH_CANVAS - 100;
         CLOUD.velocity = 1;
+        FLOOR.velocity = 4;
       }
     }
   });
@@ -114,6 +121,7 @@ const collision = () => {
       NIVEL.velocity = 0;
       CLOUD.velocity = 0;
       CACTUS.velocity = 0;
+      FLOOR.velocity = 0;
     }
   }
 };
@@ -123,17 +131,19 @@ const drawFloor = () => {
     IMG.image,
     0,
     50,
-    1200,
+    900,
     18,
-    0,
+    FLOOR.x,
     FLOOR.value + 38,
-    WIDTH_CANVAS,
+    1200,
     20
   );
-  if (FLOOR.x > WIDTH_CANVAS) {
-    FLOOR.x -= NIVEL.velocity;
+  if (FLOOR.start < 250) {
+    FLOOR.x -= FLOOR.velocity;
+    FLOOR.start += FLOOR.velocity;
   } else {
-    FLOOR.x = WIDTH_CANVAS;
+    FLOOR.x = 0;
+    FLOOR.start = 0;
   }
 };
 
@@ -150,10 +160,13 @@ const drawClouds = () => {
 const drawCactus = () => {
   // CONTEXT.drawImage(IMG.image, CACTUS.x, CACTUS.y, 100, 80);
   CONTEXT.drawImage(IMG.image, 433, 0, 25, 45, CACTUS.x, CACTUS.y, 30, 45);
+  if (!NIVEL.gameover) {
+    const count = localStorage.getItem('count') || 0;
+    localStorage.setItem('count', parseInt(count) + 1);
+  }
+
   if (CACTUS.x < -100) {
     CACTUS.x = WIDTH_CANVAS + 100;
-    const score = localStorage.getItem('score') || 0;
-    localStorage.setItem('score', parseInt(score) + 10);
   } else {
     CACTUS.x -= CACTUS.velocity;
   }
@@ -161,16 +174,26 @@ const drawCactus = () => {
 
 const drawGameOver = () => {
   if (NIVEL.gameover) {
+    const count = localStorage.getItem('count') || 0;
+    const score = localStorage.getItem('score') || 0;
+    if (count > score) {
+      localStorage.setItem('score', count);
+    }
+
     CONTEXT.drawImage(IMG.image, 0, 0, 40, 50, 350, 100, 40, 50);
     CONTEXT.font = '30px Arial';
+    CONTEXT.fillStyle = 'black';
     CONTEXT.fillText('Game Over', 300, 160);
   }
 };
 
 const writeScore = () => {
   const score = localStorage.getItem('score') || 0;
+  const count = localStorage.getItem('count') || 0;
   CONTEXT.font = '20px Arial';
-  CONTEXT.fillText(`HI: ${score}`, 600, 20);
+  CONTEXT.fillStyle = 'gray';
+  CONTEXT.fillText(`HI: ${score}`, 500, 20);
+  CONTEXT.fillText(count, 600, 20);
 };
 
 const drawRex = () => {
