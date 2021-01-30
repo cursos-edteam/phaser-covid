@@ -1,26 +1,44 @@
+import Background from '../assets/background.png';
+import Floor from '../assets/floor.png';
+import Wall from '../assets/wall.png';
 import Virus from '../assets/virus.png';
+import CruzRoja from '../assets/redCross.png';
+import Life from '../assets/life.png';
+import Logo from '../assets/logo.png';
 
+import FontImage from '../assets/font/font.png';
+import FontJson from '../assets/font/font.json';
+
+import RedBoySprites from '../assets/redBoy/redBoySprites.png';
+import RedBoyJson from '../assets/redBoy/red_boy_atlas.json';
+import RedBoyAnimated from '../assets/redBoy/red_boy_anim.json';
 class Bootloader extends Phaser.Scene {
   constructor() {
-    super({
-      key: 'Bootloader'
-    });
+      super('Bootloader'); 
   }
-  init() {
-    console.log('Soy init');
-  }
-  preload() {
-    this.load.image('virus', Virus);
-  }
-  create() {
-    this.virus = this.add.image(100, 100, 'virus');
-    const { KeyCodes } = Phaser.Input.Keyboard;
-    this.teclaUP = this.input.keyboard.addKey(KeyCodes.UP);
-    this.teclaUP.on('down', () => {
-      console.log('Presionaste');
-    });
-  }
-  update(time, delta) {}
-}
 
+  preload() {
+      this.load.image('background', Background);
+      this.load.image('floor', Floor);
+      this.load.image('wall', Wall);
+      this.load.image('bomb', Virus);
+      this.load.image('tomato_item', CruzRoja);
+      this.load.image('life', Life);
+      this.load.image('logo', Logo);
+
+      this.load.image('font', FontImage);
+      this.load.json('fontData', FontJson);
+
+      this.load.atlas('tomato', RedBoySprites, RedBoyJson);
+      this.load.animation('tomatoAnim', RedBoyAnimated);
+
+      this.load.on('complete', () => {
+
+          const fontData = this.cache.json.get('fontData');
+          this.cache.bitmapFont.add('pixelFont', Phaser.GameObjects.RetroFont.Parse(this, fontData));
+
+          this.scene.start('Menu');
+      });
+  }
+}
 export default Bootloader;
