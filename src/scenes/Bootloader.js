@@ -21,16 +21,16 @@ class Bootloader extends Phaser.Scene {
       this.load.image('background', Background);
       this.load.image('floor', Floor);
       this.load.image('wall', Wall);
-      this.load.image('bomb', Virus);
-      this.load.image('tomato_item', CruzRoja);
+      this.load.image('virus', Virus);
+      this.load.image('object_item', CruzRoja);
       this.load.image('life', Life);
       this.load.image('logo', Logo);
 
       this.load.image('font', FontImage);
       this.load.json('fontData', FontJson);
 
-      this.load.atlas('tomato', RedBoySprites, RedBoyJson);
-      this.load.animation('tomatoAnim', RedBoyAnimated);
+      this.load.atlas('object', RedBoySprites, RedBoyJson);
+      this.load.animation('objectAnim', RedBoyAnimated);
 
       this.load.on('complete', () => {
 

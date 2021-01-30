@@ -1,7 +1,7 @@
 {
     "frames": [
         {
-            "filename": "tomato_idle_0",
+            "filename": "object_idle_0",
             "frame": {
                 "x": 1,
                 "y": 1,
@@ -14,7 +14,7 @@
             }
         },
         {
-            "filename": "tomato_idle_1",
+            "filename": "object_idle_1",
             "frame": {
                 "x": 19,
                 "y": 1,
@@ -27,7 +27,7 @@
             }
         },
         {
-            "filename": "tomato_idle_2",
+            "filename": "object_idle_2",
             "frame": {
                 "x": 37,
                 "y": 1,
@@ -40,7 +40,7 @@
             }
         },
         {
-            "filename": "tomato_idle_3",
+            "filename": "object_idle_3",
             "frame": {
                 "x": 55,
                 "y": 1,
@@ -53,7 +53,7 @@
             }
         },
         {
-            "filename": "tomato_idle_4",
+            "filename": "object_idle_4",
             "frame": {
                 "x": 73,
                 "y": 1,
@@ -66,7 +66,7 @@
             }
         },
         {
-            "filename": "tomato_idle_5",
+            "filename": "object_idle_5",
             "frame": {
                 "x": 91,
                 "y": 1,
@@ -79,7 +79,7 @@
             }
         },
         {
-            "filename": "tomato_idle_6",
+            "filename": "object_idle_6",
             "frame": {
                 "x": 109,
                 "y": 1,
@@ -92,7 +92,7 @@
             }
         },
         {
-            "filename": "tomato_idle_7",
+            "filename": "object_idle_7",
             "frame": {
                 "x": 127,
                 "y": 1,
@@ -105,7 +105,7 @@
             }
         },
         {
-            "filename": "tomato_walk_0",
+            "filename": "object_walk_0",
             "frame": {
                 "x": 1,
                 "y": 28,
@@ -118,7 +118,7 @@
             }
         },
         {
-            "filename": "tomato_walk_1",
+            "filename": "object_walk_1",
             "frame": {
                 "x": 19,
                 "y": 28,
@@ -131,7 +131,7 @@
             }
         },
         {
-            "filename": "tomato_walk_2",
+            "filename": "object_walk_2",
             "frame": {
                 "x": 37,
                 "y": 28,
@@ -144,7 +144,7 @@
             }
         },
         {
-            "filename": "tomato_walk_3",
+            "filename": "object_walk_3",
             "frame": {
                 "x": 55,
                 "y": 28,
@@ -157,7 +157,7 @@
             }
         },
         {
-            "filename": "tomato_walk_4",
+            "filename": "object_walk_4",
             "frame": {
                 "x": 73,
                 "y": 28,
@@ -170,7 +170,7 @@
             }
         },
         {
-            "filename": "tomato_walk_5",
+            "filename": "object_walk_5",
             "frame": {
                 "x": 91,
                 "y": 28,
@@ -183,7 +183,7 @@
             }
         },
         {
-            "filename": "tomato_walk_6",
+            "filename": "object_walk_6",
             "frame": {
                 "x": 109,
                 "y": 28,
@@ -196,7 +196,7 @@
             }
         },
         {
-            "filename": "tomato_walk_7",
+            "filename": "object_walk_7",
             "frame": {
                 "x": 127,
                 "y": 28,
@@ -209,7 +209,7 @@
             }
         },
         {
-            "filename": "tomato_jump_0",
+            "filename": "object_jump_0",
             "frame": {
                 "x": 1,
                 "y": 55,
@@ -222,7 +222,7 @@
             }
         },
         {
-            "filename": "tomato_down_0",
+            "filename": "object_down_0",
             "frame": {
                 "x": 19,
                 "y": 55,
@@ -235,7 +235,7 @@
             }
         },
         {
-            "filename": "tomato_down_1",
+            "filename": "object_down_1",
             "frame": {
                 "x": 37,
                 "y": 55,
@@ -248,7 +248,7 @@
             }
         },
         {
-            "filename": "tomato_down_2",
+            "filename": "object_down_2",
             "frame": {
                 "x": 55,
                 "y": 55,
@@ -261,7 +261,7 @@
             }
         },
         {
-            "filename": "tomato_down_3",
+            "filename": "object_down_3",
             "frame": {
                 "x": 73,
                 "y": 55,
@@ -274,7 +274,7 @@
             }
         },
         {
-            "filename": "tomato_down_4",
+            "filename": "object_down_4",
             "frame": {
                 "x": 91,
                 "y": 55,
@@ -287,7 +287,7 @@
             }
         },
         {
-            "filename": "tomato_down_5",
+            "filename": "object_down_5",
             "frame": {
                 "x": 109,
                 "y": 55,

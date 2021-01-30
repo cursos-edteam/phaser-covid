@@ -1,6 +1,6 @@
-import Tomato from '../Player/Tomato';
-import Bombs from '../Objects/Bombs';
-import TomatoItem from '../Objects/TomatoItem';
+import RedBoy from '../Player/RedBoy';
+import Virus from '../Objects/Virus';
+import RedCrossItem from '../Objects/redCrossItem';
 
 class Play extends Phaser.Scene {
     constructor() {
@@ -32,41 +32,41 @@ class Play extends Phaser.Scene {
         this.wall_floor.getChildren()[2].setOffset(0, 15);
 
 
-        // Bombs
-        this.bombsGroup = new Bombs({
+        // Virus
+        this.virusGroup = new Virus({
             physicsWorld: this.physics.world,
             scene: this
         });
 
         // Items
-        this.itemsGroup = new TomatoItem({
+        this.itemsGroup = new RedCrossItem({
             physicsWorld: this.physics.world,
             scene: this
         });
 
         // Personaje
-        this.tomato = new Tomato({
+        this.redBoy = new RedBoy({
             scene: this,
             x: 100,
             y: 100,
         });
 
-        this.physics.add.collider([this.tomato, this.bombsGroup], this.wall_floor);
-        this.physics.add.overlap(this.tomato, this.bombsGroup, () => {
-            this.tomato.bombCollision();
+        this.physics.add.collider([this.redBoy, this.virusGroup], this.wall_floor);
+        this.physics.add.overlap(this.redBoy, this.virusGroup, () => {
+            this.redBoy.virusCollision();
         });
 
-        this.physics.add.overlap(this.itemsGroup, this.tomato, () => {
+        this.physics.add.overlap(this.itemsGroup, this.redBoy, () => {
             // this.sound.play('pop');
             this.registry.events.emit('update_points');
             this.itemsGroup.destroyItem();
-            this.bombsGroup.addBomb();
+            this.virusGroup.addVirus();
         });
     }
 
     update() {
-        this.tomato.update();
-        this.bombsGroup.update();
+        this.redBoy.update();
+        this.virusGroup.update();
     }
 }
 

@@ -1,126 +1,126 @@
 {
     "anims": [
         {
-            "key": "tomato_walk",
+            "key": "object_walk",
             "type": "frames",
             "repeat": -1,
             "frameRate": 12,
             "frames": [
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_0"
+                    "key": "object",
+                    "frame": "object_walk_0"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_1"
+                    "key": "object",
+                    "frame": "object_walk_1"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_2"
+                    "key": "object",
+                    "frame": "object_walk_2"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_3"
+                    "key": "object",
+                    "frame": "object_walk_3"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_4"
+                    "key": "object",
+                    "frame": "object_walk_4"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_5"
+                    "key": "object",
+                    "frame": "object_walk_5"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_6"
+                    "key": "object",
+                    "frame": "object_walk_6"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_walk_7"
+                    "key": "object",
+                    "frame": "object_walk_7"
                 }
             ]
         },
         {
-            "key": "tomato_idle",
+            "key": "object_idle",
             "type": "frames",
             "repeat": -1,
             "frameRate": 9,
             "frames": [
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_0"
+                    "key": "object",
+                    "frame": "object_idle_0"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_1"
+                    "key": "object",
+                    "frame": "object_idle_1"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_2"
+                    "key": "object",
+                    "frame": "object_idle_2"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_3"
+                    "key": "object",
+                    "frame": "object_idle_3"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_4"
+                    "key": "object",
+                    "frame": "object_idle_4"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_5"
+                    "key": "object",
+                    "frame": "object_idle_5"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_6"
+                    "key": "object",
+                    "frame": "object_idle_6"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_idle_7"
+                    "key": "object",
+                    "frame": "object_idle_7"
                 }
             ]
         },
         {
-            "key": "tomato_jump",
+            "key": "object_jump",
             "type": "frames",
             "repeat": 1,
             "frameRate": 12,
             "frames": [
                 {
-                    "key": "tomato",
-                    "frame": "tomato_jump_0"
+                    "key": "object",
+                    "frame": "object_jump_0"
                 }
             ]
         },
         {
-            "key": "tomato_down",
+            "key": "object_down",
             "type": "frames",
             "repeat": -1,
             "frameRate": 8,
             "frames": [
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_0"
+                    "key": "object",
+                    "frame": "object_down_0"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_1"
+                    "key": "object",
+                    "frame": "object_down_1"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_2"
+                    "key": "object",
+                    "frame": "object_down_2"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_3"
+                    "key": "object",
+                    "frame": "object_down_3"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_4"
+                    "key": "object",
+                    "frame": "object_down_4"
                 },
                 {
-                    "key": "tomato",
-                    "frame": "tomato_down_5"
+                    "key": "object",
+                    "frame": "object_down_5"
                 }
             ]
         }

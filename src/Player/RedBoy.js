@@ -1,6 +1,6 @@
-class Tomato extends Phaser.GameObjects.Sprite {
+class RedBoy extends Phaser.GameObjects.Sprite {
   constructor(config) {
-      super(config.scene, config.x, config.y, 'tomato');
+      super(config.scene, config.x, config.y, 'object');
 
       this.scene = config.scene;
       this.scene.add.existing(this);
@@ -13,8 +13,8 @@ class Tomato extends Phaser.GameObjects.Sprite {
 
       this.jumping = false;
 
-      this.anims.play('tomato_idle');
-      this.prevMov = 'tomato_idle';
+      this.anims.play('object_idle');
+      this.prevMov = 'object_idle';
 
       this.hitDelay = false;
 
@@ -30,14 +30,14 @@ class Tomato extends Phaser.GameObjects.Sprite {
           this.flipX = true;
           if(this.prevMov !== 'left' && !this.jumping) {
               this.prevMov = 'left';
-              this.anims.play('tomato_walk');
+              this.anims.play('object_walk');
           }
       } else if(this.cursor.right.isDown) {
           this.body.setVelocityX(200);
           this.flipX = false;
           if(this.prevMov !== 'right' && !this.jumping) {
               this.prevMov = 'right';
-              this.anims.play('tomato_walk');
+              this.anims.play('object_walk');
           }
 
       } else if(this.cursor.down.isDown && !this.jumping) {
@@ -47,7 +47,7 @@ class Tomato extends Phaser.GameObjects.Sprite {
 
           if(this.prevMov !== 'down' && !this.jumping) {
               this.prevMov = 'down';
-              this.anims.play('tomato_down');
+              this.anims.play('object_down');
           }
 
       }
@@ -55,9 +55,9 @@ class Tomato extends Phaser.GameObjects.Sprite {
           this.body.setVelocityX(0);
           this.body.setSize(14, 20);
           this.body.setOffset(2, 5);
-          if(this.prevMov !== 'tomato_idle' && !this.jumping) {
-              this.prevMov = 'tomato_idle';
-              this.anims.play('tomato_idle');
+          if(this.prevMov !== 'object_idle' && !this.jumping) {
+              this.prevMov = 'object_idle';
+              this.anims.play('object_idle');
           }
       }
 
@@ -66,14 +66,14 @@ class Tomato extends Phaser.GameObjects.Sprite {
           this.body.setVelocityY(-800);
           if(this.prevMov !== 'jump') {
               this.prevMov = 'jump';
-              this.anims.play('tomato_jump');
+              this.anims.play('object_jump');
           }
       } else if(this.body.blocked.down) {
           this.jumping = false;
       }
   }
 
-  bombCollision() {
+  virusCollision() {
       if(!this.hitDelay) {
           this.hitDelay = true;
 
@@ -97,4 +97,4 @@ class Tomato extends Phaser.GameObjects.Sprite {
   }
 }
 
-export default Tomato;
+export default RedBoy;

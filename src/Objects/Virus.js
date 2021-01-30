@@ -1,13 +1,13 @@
-class Bombs extends Phaser.Physics.Arcade.Group {
+class Virus extends Phaser.Physics.Arcade.Group {
   constructor(config) {
       super(config.physicsWorld, config.scene);
-      this.addBomb();
+      this.addVirus();
   }
 
-  addBomb() {
+  addVirus() {
       this.create(
           Phaser.Math.Between(40, this.scene.scale.width - 40)
-          , -10, 'bomb')
+          , -10, 'virus')
           .setDepth(2)
           .setBounce(1)
           .setCircle(18)
@@ -18,14 +18,14 @@ class Bombs extends Phaser.Physics.Arcade.Group {
   }
 
   update() {
-      this.children.iterate( bomb => {
-          if(bomb.body.velocity.x < 0) {
-              bomb.setAngularVelocity(-300);
+      this.children.iterate( virus => {
+          if(virus.body.velocity.x < 0) {
+              virus.setAngularVelocity(-300);
           } else {
-              bomb.setAngularVelocity(300);
+              virus.setAngularVelocity(300);
           }
       });
   }
 }
 
-export default Bombs;
+export default Virus;
