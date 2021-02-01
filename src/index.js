@@ -1,12 +1,11 @@
 import Phaser from 'phaser';
 import Bootloader from './scenes/Bootloader';
-import Play from './scenes/Play';
-import Menu from './scenes/Menu';
 import UI from './scenes/UI';
-
+import Menu from './scenes/Menu';
+import Play from './scenes/Play';
 
 const CONFIG = {
-  title: "Covid",
+  title: "Juego Covid",
   version: "1.0.0",
   type: Phaser.AUTO,
   scale: {
@@ -18,11 +17,12 @@ const CONFIG = {
   },
   pixelArt: true,
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: {
         y: 2000
-      }
+      },
+      debug: false
     }
   },
   scene: [

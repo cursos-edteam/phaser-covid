@@ -1,28 +1,24 @@
 {
-  "name": "t-rex",
+  "name": "juego",
   "version": "1.0.0",
-  "description": "Este sera un clon del juego del t-rex que nos ofrece el navegador de google chrome",
+  "description": "Este sera un juego creado con phaser 3",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack serve --mode development"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/diego-adrian/t-rex.git"
+    "type": "git"
   },
   "keywords": [
     "juegos",
     "html5",
     "canvas",
-    "t-rex"
+    "phaser"
   ],
   "author": "adry.dabp@gmail.com",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/diego-adrian/t-rex/issues"
-  },
-  "homepage": "https://github.com/diego-adrian/t-rex#readme",
+  "bugs": {},
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",

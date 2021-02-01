@@ -12,33 +12,48 @@ import FontJson from '../assets/font/font.json';
 import RedBoySprites from '../assets/redBoy/redBoySprites.png';
 import RedBoyJson from '../assets/redBoy/red_boy_atlas.json';
 import RedBoyAnimated from '../assets/redBoy/red_boy_anim.json';
+
 class Bootloader extends Phaser.Scene {
-  constructor() {
-      super('Bootloader'); 
+  constructor () {
+    super({
+      key: 'Bootloader'
+    })
   }
 
-  preload() {
-      this.load.image('background', Background);
-      this.load.image('floor', Floor);
-      this.load.image('wall', Wall);
-      this.load.image('virus', Virus);
-      this.load.image('object_item', CruzRoja);
-      this.load.image('life', Life);
-      this.load.image('logo', Logo);
+  init () {
+  }
 
-      this.load.image('font', FontImage);
-      this.load.json('fontData', FontJson);
+  preload () {
+    this.load.image('background', Background);
+    this.load.image('floor', Floor);
+    this.load.image('wall', Wall);
+    this.load.image('virus', Virus);
+    this.load.image('object_item', CruzRoja);
+    this.load.image('life', Life);
+    this.load.image('logo', Logo);
 
-      this.load.atlas('object', RedBoySprites, RedBoyJson);
-      this.load.animation('objectAnim', RedBoyAnimated);
+    this.load.image('font', FontImage);
+    this.load.json('fontData', FontJson);
 
-      this.load.on('complete', () => {
+    this.load.atlas('object', RedBoySprites, RedBoyJson);
+    this.load.animation('objectAnim', RedBoyAnimated);
 
-          const fontData = this.cache.json.get('fontData');
-          this.cache.bitmapFont.add('pixelFont', Phaser.GameObjects.RetroFont.Parse(this, fontData));
+    this.load.on('complete', () => {
 
-          this.scene.start('Menu');
-      });
+      const fontData = this.cache.json.get('fontData');
+      this.cache.bitmapFont.add('pixelFont', Phaser.GameObjects.RetroFont.Parse(this, fontData));
+
+      this.scene.start('Menu');
+    });
+  }
+
+  create () {
+  }
+
+  update (time, delta) {
   }
 }
+
 export default Bootloader;
+
+

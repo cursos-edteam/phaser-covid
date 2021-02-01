@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Clon T-Rex',
+      title: 'Escapa del covid',
       template: path.resolve(__dirname, './src/template.html'),
       filename: 'index.html' // Es el nombre del archivo de salida
     }),
